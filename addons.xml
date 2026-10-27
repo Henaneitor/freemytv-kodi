@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="skin.freemytv" version="1.2.0" name="Free My TV" provider-name="Free My TV">
+	<requires>
+		<import addon="xbmc.gui" version="5.17.0"/>
+		<import addon="script.freemytv" version="1.2.0"/>
+	</requires>
+	<extension point="xbmc.gui.skin" debugging="false">
+		<res width="1920" height="1440" aspect="4:3" default="false" folder="xml" />
+		<res width="1920" height="1280" aspect="3:2" default="false" folder="xml" />
+		<res width="1920" height="1200" aspect="16:10" default="false" folder="xml" />
+		<res width="2040" height="1080" aspect="17:9" default="false" folder="xml" />
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml" />
+		<res width="2560" height="1080" aspect="21:9" default="false" folder="xml" />
+		<res width="2338" height="1080" aspect="19.5:9" default="false" folder="xml" />
+		<res width="2160" height="1080" aspect="18:9" default="false" folder="xml" />
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="es_ES">La portada de Free My TV con tu Jellyfin (JellyCon). Hecha sobre Estuary, la skin de Kodi.</summary>
+		<summary lang="en_GB">Free My TV's home screen with your Jellyfin (JellyCon). Made on Estuary, Kodi's skin.</summary>
+		<platform>all</platform>
+		<license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
+		<assets>
+			<icon>resources/icon.png</icon>
+		</assets>
+	</extension>
+</addon>
+<addon id="script.freemytv" name="Free My TV" version="1.2.0" provider-name="Free My TV">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="plugin.video.jellycon" version="1.0.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py"/>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">   <!-- the first tab's copy at start -->
+		<provides>video</provides>
+	</extension>
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<item library="context.py">
+				<label>Ver más tarde</label>
+				<visible>!String.IsEmpty(ListItem.Property(id)) + String.IsEqual(ListItem.Property(ItemType),Movie)</visible>
+			</item>
+		</menu>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="es_ES">Free My TV en Kodi: búsqueda, fichas de serie, Ver más tarde y pestañas, como en la TV.</summary>
+		<summary lang="en_GB">Free My TV on Kodi: search, series pages, Watch Later and tabs, as on the TV.</summary>
+		<platform>all</platform>
+		<assets>
+			<icon>resources/icon.png</icon>
+		</assets>
+		<license>MIT</license>
+	</extension>
+</addon>
+<addon id="repository.freemytv" version="1.0.0" name="Free My TV" provider-name="Free My TV">
+	<extension point="xbmc.addon.repository" name="Free My TV">
+		<dir>
+			<info compressed="false">https://meleeislandbot.github.io/freemytv-kodi/addons.xml</info>
+			<checksum>https://meleeislandbot.github.io/freemytv-kodi/addons.xml.md5</checksum>
+			<datadir zip="true">https://meleeislandbot.github.io/freemytv-kodi/</datadir>
+		</dir>
+		<dir>
+			<info compressed="false">https://kodi.jellyfin.org/py3/addons.xml</info>
+			<checksum>https://kodi.jellyfin.org/py3/addons.xml.md5</checksum>
+			<datadir zip="true">https://kodi.jellyfin.org/py3/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="es_ES">Free My TV para Kodi, y JellyCon.</summary>
+		<summary lang="en_GB">Free My TV for Kodi, and JellyCon.</summary>
+		<platform>all</platform>
+		<assets>
+			<icon>resources/icon.png</icon>
+		</assets>
+	</extension>
+</addon>
+</addons>
